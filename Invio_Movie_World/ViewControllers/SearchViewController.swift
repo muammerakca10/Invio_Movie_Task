@@ -13,14 +13,15 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
     
     var imageInTableView : UIImage?
     
-    var selectedMovieID : String?
-
-        
+    var selectedMovie : MovieDetail!
+    
+    var selectedMovieID = ""
+    
     let searchController = UISearchController()
-        
+    
     var findedMovies = [MovieShortInfo]()
     var omdbApi = OmdbApi(apiKey: "31dd4179")
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,13 +37,13 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! Cell
+        
         cell.movieNameLabel!.text = self.findedMovies[indexPath.row].title
         cell.yearLabel!.text = "Year : \(findedMovies[indexPath.row].year)"
-        
-        
         cell.posterImage.load(urlString: self.findedMovies[indexPath.row].poster)
-                
+        
         return cell
     }
     
@@ -52,7 +53,25 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedMovieID = findedMovies[indexPath.row].imdbID
-        print(selectedMovieID!)
+        
+        /*
+        omdbApi.getMovieDetail(imdbID: selectedMovieID!) { (movieDetail) in
+            if let movieDetail = movieDetail {
+                print("movieDetail : \(movieDetail)")
+                self.selectedMovie = movieDetail
+            }
+        }
+        */
+        
+        performSegue(withIdentifier: "toDetailVC", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toDetailVC"{
+            let destination = segue.destination as! DetailViewController
+            destination.imdbID = selectedMovieID
+            
+        }
     }
     
     func updateSearchResults(for searchController: UISearchController) {

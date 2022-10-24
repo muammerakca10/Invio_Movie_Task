@@ -34,9 +34,9 @@ class OmdbApi {
         }
     }
     
-    func getMovieDetail(text: String , completion : @escaping (MovieDetail?) -> Void)  {
+    func getMovieDetail(imdbID: String , completion : @escaping (MovieDetail?) -> Void)  {
         //let response =
-        AF.request(baseUrl, method: .get, parameters: ["apikey":apiKey, "t":text]).response{ (response) in
+        AF.request(baseUrl, method: .get, parameters: ["apikey":apiKey, "i":imdbID]).response{ (response) in
             if let data = response.data {
                 do{
                     let result = try JSONDecoder().decode(MovieDetail?.self, from: data)
