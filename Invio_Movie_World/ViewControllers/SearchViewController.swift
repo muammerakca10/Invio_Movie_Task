@@ -12,6 +12,8 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
     @IBOutlet var tableView: UITableView!
     
     var imageInTableView : UIImage?
+    
+    var selectedMovieID : String?
 
         
     let searchController = UISearchController()
@@ -49,7 +51,8 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        selectedMovieID = findedMovies[indexPath.row].imdbID
+        print(selectedMovieID!)
     }
     
     func updateSearchResults(for searchController: UISearchController) {

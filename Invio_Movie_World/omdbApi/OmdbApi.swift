@@ -33,4 +33,19 @@ class OmdbApi {
             }
         }
     }
+    
+    func getMovieDetail(text: String , completion : @escaping (MovieDetail?) -> Void)  {
+        //let response =
+        AF.request(baseUrl, method: .get, parameters: ["apikey":apiKey, "t":text]).response{ (response) in
+            if let data = response.data {
+                do{
+                    let result = try JSONDecoder().decode(MovieDetail?.self, from: data)
+                    completion(result)
+                } catch {
+                    print(error)
+                    completion(nil)
+                }
+            }
+        }
+    }
 }
