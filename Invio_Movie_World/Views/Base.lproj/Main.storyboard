@@ -39,7 +39,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ue-Mb-Tnd">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Year :" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ue-Mb-Tnd">
                                                     <rect key="frame" x="120" y="50" width="260" height="54"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -57,9 +57,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="descriptionLabel" destination="9ue-Mb-Tnd" id="aov-SM-laU"/>
                                             <outlet property="movieNameLabel" destination="zaC-iM-0aI" id="8lF-Rc-p1Y"/>
                                             <outlet property="posterImage" destination="8cQ-zC-dAy" id="F15-4T-hrg"/>
+                                            <outlet property="yearLabel" destination="9ue-Mb-Tnd" id="aov-SM-laU"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

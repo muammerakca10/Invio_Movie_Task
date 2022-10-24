@@ -12,7 +12,7 @@ class ViewController: UIViewController, UISearchResultsUpdating, UITableViewDele
     
     let searchController = UISearchController()
         
-    var findedMovies = [SearchResult]()
+    var findedMovies = [MovieShortInfo]()
     var omdbApi = OmdbApi(apiKey: "31dd4179")
 
     override func viewDidLoad() {
@@ -28,39 +28,32 @@ class ViewController: UIViewController, UISearchResultsUpdating, UITableViewDele
         tableView.dataSource = self
     }
     
-    /*
-    @IBAction func searchButtonClicked(_ sender: Any) {
-        omdbApi.search(text: searchTextField.text!) { (result) in
-            guard let result = result else {
-                print("Error")
-                return}
-            print(result)
-        }
-    }
-     */
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! Cell
-        cell.movieNameLabel!.text = "asd"
-        cell.descriptionLabel!.text = "aaaaaaaaaakljkjbk kjbkbuibibiu kbiubiubiubkbkbi kbiubiubiubibiunn"
-        cell.posterImage!.image = UIImage(named: "invioMovieLogo.png")
+        cell.movieNameLabel!.text = self.findedMovies[indexPath.row].title
+        cell.yearLabel!.text = "Year : \(findedMovies[indexPath.row].year)"
+        //cell.posterImage!.image = UIImage(
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return findedMovies.count
     }
     
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else {return}
-        /*
-        omdbApi.search(text: text) { () in
-            <#code#>
-        }
-        */
         
+        omdbApi.search(text: text) { (searchResults) in
+            if let searchResults = searchResults {
+                //print(searchResults)
+                self.findedMovies = searchResults.search
+                self.tableView.reloadData()
+            }
+        }
         print(text)
     }
+        
+        
 }
 

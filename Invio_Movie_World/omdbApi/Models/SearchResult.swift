@@ -17,6 +17,13 @@ struct SearchResult: Codable {
         case totalResults = "totalResults"
         case response = "Response"
     }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.search = try container.decode([MovieShortInfo].self, forKey: .search)
+        self.totalResults = try container.decode(String.self, forKey: .totalResults)
+        self.response = try container.decode(String.self, forKey: .response)
+    }
 }
 
 // MARK: - MovieShortInfo
@@ -32,4 +39,13 @@ struct MovieShortInfo: Codable {
         case type = "Type"
         case poster = "Poster"
     }
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.title = try container.decode(String.self, forKey: .title)
+        self.year = try container.decode(String.self, forKey: .year)
+        self.imdbID = try container.decode(String.self, forKey: .imdbID)
+        self.type = try container.decode(String.self, forKey: .type)
+        self.poster = try container.decode(String.self, forKey: .poster)
+    }
 }
+

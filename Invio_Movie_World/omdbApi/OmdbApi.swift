@@ -7,6 +7,7 @@
 
 import Foundation
 import Alamofire
+import UIKit
 
 class OmdbApi {
     
@@ -19,10 +20,11 @@ class OmdbApi {
     }
     
     func search(text: String , completion : @escaping (SearchResult?) -> Void)  {
-        let response = AF.request(baseUrl, method: .get, parameters: ["apikey":self.apiKey, "s":text]).response{ (response) in
+        //let response =
+        AF.request(baseUrl, method: .get, parameters: ["apikey":apiKey, "s":text]).response{ (response) in
             if let data = response.data {
                 do{
-                    let result = try JSONDecoder().decode(SearchResult.self, from: data)
+                    let result = try JSONDecoder().decode(SearchResult?.self, from: data)
                     completion(result)
                 } catch {
                     print(error)
@@ -30,7 +32,16 @@ class OmdbApi {
                 }
             }
         }
-        
+    }
+    
+    func downloadPhoto(from url: URL, completion : @escaping (UIImage?) -> Void){
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let data = data, let image = UIImage(data: data) {
+                completion(image)
+            } else {
+                completion(nil)
+            }
+        }.resume()
     }
     
 }
