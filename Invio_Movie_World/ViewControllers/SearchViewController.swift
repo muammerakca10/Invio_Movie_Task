@@ -4,12 +4,16 @@
 //
 //  Created by MAC on 23.10.2022.
 //
-import Alamofire
 import UIKit
-class ViewController: UIViewController, UISearchResultsUpdating, UITableViewDelegate, UITableViewDataSource {
+import Alamofire
+
+class SearchViewController: UIViewController, UISearchResultsUpdating, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var tableView: UITableView!
     
+    var imageInTableView : UIImage?
+
+        
     let searchController = UISearchController()
         
     var findedMovies = [MovieShortInfo]()
@@ -17,6 +21,7 @@ class ViewController: UIViewController, UISearchResultsUpdating, UITableViewDele
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         title = "Invio Movie World"
         
@@ -32,13 +37,19 @@ class ViewController: UIViewController, UISearchResultsUpdating, UITableViewDele
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! Cell
         cell.movieNameLabel!.text = self.findedMovies[indexPath.row].title
         cell.yearLabel!.text = "Year : \(findedMovies[indexPath.row].year)"
-        //cell.posterImage!.image = UIImage(
         
+        
+        cell.posterImage.load(urlString: self.findedMovies[indexPath.row].poster)
+                
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return findedMovies.count
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
     }
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -53,7 +64,4 @@ class ViewController: UIViewController, UISearchResultsUpdating, UITableViewDele
         }
         print(text)
     }
-        
-        
 }
-

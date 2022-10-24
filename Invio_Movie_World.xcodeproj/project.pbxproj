@@ -8,9 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		4561C3B829067688004B7764 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4561C3B729067688004B7764 /* Cell.swift */; };
+		458340432906CC7200418467 /* UIImageView+load.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458340422906CC7200418467 /* UIImageView+load.swift */; };
+		458340462906CE0D00418467 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458340452906CE0D00418467 /* DetailViewController.swift */; };
 		45887E8C290540E600F82C63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45887E8B290540E600F82C63 /* AppDelegate.swift */; };
 		45887E8E290540E600F82C63 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45887E8D290540E600F82C63 /* SceneDelegate.swift */; };
-		45887E90290540E600F82C63 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45887E8F290540E600F82C63 /* ViewController.swift */; };
+		45887E90290540E600F82C63 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45887E8F290540E600F82C63 /* SearchViewController.swift */; };
 		45887E93290540E600F82C63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45887E91290540E600F82C63 /* Main.storyboard */; };
 		45887E95290540ED00F82C63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45887E94290540ED00F82C63 /* Assets.xcassets */; };
 		45887E98290540ED00F82C63 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45887E96290540ED00F82C63 /* LaunchScreen.storyboard */; };
@@ -23,10 +25,12 @@
 
 /* Begin PBXFileReference section */
 		4561C3B729067688004B7764 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
+		458340422906CC7200418467 /* UIImageView+load.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+load.swift"; sourceTree = "<group>"; };
+		458340452906CE0D00418467 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		45887E88290540E600F82C63 /* Invio_Movie_World.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Invio_Movie_World.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45887E8B290540E600F82C63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		45887E8D290540E600F82C63 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		45887E8F290540E600F82C63 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		45887E8F290540E600F82C63 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		45887E92290540E600F82C63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		45887E94290540ED00F82C63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		45887E97290540ED00F82C63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +53,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		458340442906CC7F00418467 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				458340422906CC7200418467 /* UIImageView+load.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		458340472906CE3500418467 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				45887E8F290540E600F82C63 /* SearchViewController.swift */,
+				458340452906CE0D00418467 /* DetailViewController.swift */,
+				4561C3B729067688004B7764 /* Cell.swift */,
+				45D1DBD7290580BC006D876C /* LoadingViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		45887E7F290540E600F82C63 = {
 			isa = PBXGroup;
 			children = (
@@ -68,15 +91,14 @@
 		45887E8A290540E600F82C63 /* Invio_Movie_World */ = {
 			isa = PBXGroup;
 			children = (
+				458340472906CE3500418467 /* ViewControllers */,
+				458340442906CC7F00418467 /* Extensions */,
 				45887EAA2905666900F82C63 /* omdbApi */,
-				45887E8B290540E600F82C63 /* AppDelegate.swift */,
-				45887E8D290540E600F82C63 /* SceneDelegate.swift */,
 				45887EA92905528E00F82C63 /* Views */,
-				45887E8F290540E600F82C63 /* ViewController.swift */,
-				4561C3B729067688004B7764 /* Cell.swift */,
-				45D1DBD7290580BC006D876C /* LoadingViewController.swift */,
 				45887E94290540ED00F82C63 /* Assets.xcassets */,
 				45887E99290540ED00F82C63 /* Info.plist */,
+				45887E8B290540E600F82C63 /* AppDelegate.swift */,
+				45887E8D290540E600F82C63 /* SceneDelegate.swift */,
 			);
 			path = Invio_Movie_World;
 			sourceTree = "<group>";
@@ -186,11 +208,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				45D1DBD8290580BC006D876C /* LoadingViewController.swift in Sources */,
-				45887E90290540E600F82C63 /* ViewController.swift in Sources */,
+				45887E90290540E600F82C63 /* SearchViewController.swift in Sources */,
+				458340432906CC7200418467 /* UIImageView+load.swift in Sources */,
 				45887E8C290540E600F82C63 /* AppDelegate.swift in Sources */,
 				45887EA729054F8300F82C63 /* SearchResult.swift in Sources */,
 				45887EAC290566A000F82C63 /* OmdbApi.swift in Sources */,
 				4561C3B829067688004B7764 /* Cell.swift in Sources */,
+				458340462906CE0D00418467 /* DetailViewController.swift in Sources */,
 				45887EA329054BB700F82C63 /* MovieDetail.swift in Sources */,
 				45887E8E290540E600F82C63 /* SceneDelegate.swift in Sources */,
 			);
