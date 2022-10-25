@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  Invio_Movie_World
 //
-//  Created by MAC on 23.10.2022.
+//  Created by Muammer_Akca on 23.10.2022.
 //
 import UIKit
 import Alamofire
@@ -24,7 +24,6 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         title = "Invio Movie World"
         
@@ -54,15 +53,6 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedMovieID = findedMovies[indexPath.row].imdbID
         
-        /*
-        omdbApi.getMovieDetail(imdbID: selectedMovieID!) { (movieDetail) in
-            if let movieDetail = movieDetail {
-                print("movieDetail : \(movieDetail)")
-                self.selectedMovie = movieDetail
-            }
-        }
-        */
-        
         performSegue(withIdentifier: "toDetailVC", sender: nil)
     }
     
@@ -84,6 +74,6 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UITableVi
                 self.tableView.reloadData()
             }
         }
-        print(text)
+        //print(text)
     }
 }

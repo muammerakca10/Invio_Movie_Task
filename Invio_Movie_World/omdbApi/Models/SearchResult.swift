@@ -2,7 +2,7 @@
 //  MovieShortInfo.swift
 //  Invio_Movie_World
 //
-//  Created by MAC on 23.10.2022.
+//  Created by Muammer_Akca on 23.10.2022.
 //
 
 import Foundation

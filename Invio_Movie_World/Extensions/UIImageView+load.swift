@@ -2,7 +2,7 @@
 //  UIImage+load.swift
 //  Invio_Movie_World
 //
-//  Created by MAC on 24.10.2022.
+//  Created by Muammer_Akca on 24.10.2022.
 //
 
 import Foundation
