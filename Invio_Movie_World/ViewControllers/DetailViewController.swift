@@ -1,10 +1,3 @@
-//
-//  DetailViewController.swift
-//  Invio_Movie_World
-//
-//  Created by MAC on 24.10.2022.
-//
-
 import UIKit
 
 class DetailViewController: UIViewController {
@@ -27,41 +20,49 @@ class DetailViewController: UIViewController {
     @IBOutlet var imdbIDLabel: UILabel!
     
     var imdbID = ""
-    var omdbApi = OmdbApi(apiKey: "31dd4179")
-    var selectedMovie : MovieDetail!
+    private var omdbApi = OmdbApi(apiKey: "31dd4179")
+    private var selectedMovie : MovieDetail!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //print("Detail viewdidload \(imdbID)")
+        updateUI()
         
-        omdbApi.getMovieDetail(imdbID: imdbID) { (movieDetail) in
+    }
+    
+    func getMovieDetails(completion : @escaping (_ movieDetail: MovieDetail) ->()) {
+        self.omdbApi.getMovieDetail(imdbID: self.imdbID) { (movieDetail) in
             if let movieDetail = movieDetail {
-                print("movieDetail : \(movieDetail)")
+                completion(movieDetail)
                 self.selectedMovie = movieDetail
+                print("getmoviedetails ici \(self.selectedMovie!)")
             }
         }
-        
-        
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4){
-            self.imageMovie.load(urlString: self.selectedMovie.poster)
-            self.titleLabel.text = self.selectedMovie.title
-            self.yearLabel.text = self.selectedMovie.year
-            self.releasedLabel.text = self.selectedMovie.released
-            self.runtimeLabel.text = self.selectedMovie.runtime
-            self.genreLabel.text = self.selectedMovie.genre
-            self.directorLabel.text = self.selectedMovie.director
-            self.writerLabel.text = self.selectedMovie.writer
-            self.actorsLabel.text = self.selectedMovie.actors
-            self.plotLabel.text = self.selectedMovie.plot
-            self.languageLabel.text = self.selectedMovie.language
-            self.countryLabel.text = self.selectedMovie.country
-            self.self.awardsLabel.text = self.selectedMovie.awards
-            self.imdbRatingLabel.text = self.selectedMovie.imdbRating
-            self.imdbIDLabel.text = self.selectedMovie.imdbID
-            
+    }
+    
+    func loadImage (completion : @escaping ()->()){
+        self.imageMovie.load(urlString: self.selectedMovie.poster)
+    }
+    
+    func updateUI(){
+        getMovieDetails { (movieDetail) in
+            self.loadImage {
+                self.titleLabel.text = "\(self.selectedMovie.title)"
+                self.yearLabel.text = "Year : \(self.selectedMovie.year)"
+                self.releasedLabel.text = "Released : \(self.selectedMovie.released)"
+                self.runtimeLabel.text = "Runtime : \(self.selectedMovie.runtime)"
+                self.genreLabel.text = "Genre : \(self.selectedMovie.genre)"
+                self.directorLabel.text = "Director : \(self.selectedMovie.director)"
+                self.writerLabel.text = "Writer : \(self.selectedMovie.writer)"
+                self.actorsLabel.text = "Actors : \(self.selectedMovie.actors)"
+                self.plotLabel.text = "Plot : \(self.selectedMovie.plot)"
+                self.languageLabel.text = "Language : \(self.selectedMovie.language)"
+                self.countryLabel.text = "Country : \(self.selectedMovie.country)"
+                self.self.awardsLabel.text = "Awards : \(self.selectedMovie.awards)"
+                self.imdbRatingLabel.text = "IMDB Rating : \(self.selectedMovie.imdbRating)"
+                self.imdbIDLabel.text = "IMDB ID : \(self.selectedMovie.imdbID)"
+            }
         }
     }
 }
