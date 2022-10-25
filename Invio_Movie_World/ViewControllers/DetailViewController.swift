@@ -28,40 +28,45 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         
         updateUI()
-        
     }
     
     func getMovieDetails(completion : @escaping (_ movieDetail: MovieDetail) ->()) {
-        self.omdbApi.getMovieDetail(imdbID: self.imdbID) { (movieDetail) in
+        omdbApi.getMovieDetail(imdbID: self.imdbID) { (movieDetail) in
             if let movieDetail = movieDetail {
-                completion(movieDetail)
-                self.selectedMovie = movieDetail
-                print("getmoviedetails ici \(self.selectedMovie!)")
+                
+                self.selectedMovie = movieDetail //Bu satir asagidaydi
+//              Onceki gonderdigim projede, asagidaki satirla yukaridaki satirin
+//              yerleri farkli oldugu icin hata veriyormus. Sorunu satirlarin
+//              yerlerini degistirerek cozdum
+                completion(movieDetail)  //Bu satir yukaridaydi
+//              print("after getmoviedetails : \(self.selectedMovie!)")
             }
         }
     }
     
-    func loadImage (completion : @escaping ()->()){
-        self.imageMovie.load(urlString: self.selectedMovie.poster)
+    func loadImage (for movieDetail: MovieDetail, completion : @escaping ()->Void) {
+        imageMovie.load(urlString: movieDetail.poster)
     }
     
     func updateUI(){
-        getMovieDetails { (movieDetail) in
-            self.loadImage {
-                self.titleLabel.text = "\(self.selectedMovie.title)"
-                self.yearLabel.text = "Year : \(self.selectedMovie.year)"
-                self.releasedLabel.text = "Released : \(self.selectedMovie.released)"
-                self.runtimeLabel.text = "Runtime : \(self.selectedMovie.runtime)"
-                self.genreLabel.text = "Genre : \(self.selectedMovie.genre)"
-                self.directorLabel.text = "Director : \(self.selectedMovie.director)"
-                self.writerLabel.text = "Writer : \(self.selectedMovie.writer)"
-                self.actorsLabel.text = "Actors : \(self.selectedMovie.actors)"
-                self.plotLabel.text = "Plot : \(self.selectedMovie.plot)"
-                self.languageLabel.text = "Language : \(self.selectedMovie.language)"
-                self.countryLabel.text = "Country : \(self.selectedMovie.country)"
-                self.self.awardsLabel.text = "Awards : \(self.selectedMovie.awards)"
-                self.imdbRatingLabel.text = "IMDB Rating : \(self.selectedMovie.imdbRating)"
-                self.imdbIDLabel.text = "IMDB ID : \(self.selectedMovie.imdbID)"
+        getMovieDetails { movieDetail in
+            self.titleLabel.text = "\(movieDetail.title)"
+            self.yearLabel.text = "Year : \(movieDetail.year)"
+            self.releasedLabel.text = "Released : \(movieDetail.released)"
+            self.runtimeLabel.text = "Runtime : \(movieDetail.runtime)"
+            self.genreLabel.text = "Genre : \(movieDetail.genre)"
+            self.directorLabel.text = "Director : \(movieDetail.director)"
+            self.writerLabel.text = "Writer : \(movieDetail.writer)"
+            self.actorsLabel.text = "Actors : \(movieDetail.actors)"
+            self.plotLabel.text = "Plot : \(movieDetail.plot)"
+            self.languageLabel.text = "Language : \(movieDetail.language)"
+            self.countryLabel.text = "Country : \(movieDetail.country)"
+            self.awardsLabel.text = "Awards : \(movieDetail.awards)"
+            self.imdbRatingLabel.text = "IMDB Rating : \(movieDetail.imdbRating)"
+            self.imdbIDLabel.text = "IMDB ID : \(movieDetail.imdbID)"
+            
+            self.loadImage(for: movieDetail) {
+//          print("Image load")
             }
         }
     }
